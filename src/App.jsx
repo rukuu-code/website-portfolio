@@ -3,6 +3,7 @@ import { FaTools, FaHeadset, FaCode } from 'react-icons/fa'
 import { FaRobot, FaShareNodes } from 'react-icons/fa6'
 import { SiPython, SiDiscord } from 'react-icons/si'
 import { MdSupportAgent } from 'react-icons/md'
+import { SiNodedotjs, SiGit, SiHtml5, SiCss3, SiReact } from 'react-icons/si'
 
 const NAV_LINKS = [
   { href: '#about', label: 'about' },
@@ -51,6 +52,11 @@ const SKILLS = [
   { label: 'Virtual Assistance', icon: FaHeadset },
   { label: 'Web Development', icon: FaCode },
   { label: 'Discord', icon: SiDiscord },
+  { label: 'Node.js', icon: SiNodedotjs },
+  { label: 'Git', icon: SiGit },
+  { label: 'HTML', icon: SiHtml5 },
+  { label: 'CSS', icon: SiCss3 },
+  { label: 'JSX', icon: SiReact },
 ]
 
 const TECH_GROUPS = [
