@@ -4,6 +4,7 @@ import { FaRobot, FaShareNodes } from 'react-icons/fa6'
 import { SiPython, SiDiscord } from 'react-icons/si'
 import { MdSupportAgent } from 'react-icons/md'
 import { SiNodedotjs, SiGit, SiReact } from 'react-icons/si'
+import { Analytics } from "@vercel/analytics/next"
 
 const NAV_LINKS = [
   { href: '#about', label: 'about' },
