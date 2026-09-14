@@ -350,7 +350,7 @@ function Contact() {
             I reply quickly and I&rsquo;m comfortable getting started fast.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 font-mono text-sm">
+          <div className="mt-8 flex items-center gap-5">
             <a href="mailto:cruzjasonn.7@gmail.com" className="text-ink hover:text-amber transition-colors w-fit">
               cruzjasonn.7@gmail.com
             </a>
