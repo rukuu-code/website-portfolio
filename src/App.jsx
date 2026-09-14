@@ -229,7 +229,7 @@ function About() {
               <p className="text-ink font-medium">
                 BSIT, University of the Cordilleras
               </p>
-              <p className="font-mono text-sm text-muted">2026 &ndash; 2028, currently studying</p>
+              <p className="font-mono text-sm text-muted">2026 &ndash; 2028, Undergraduate</p>
             </div>
           </div>
         </div>
