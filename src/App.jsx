@@ -5,6 +5,8 @@ import { SiPython, SiDiscord } from 'react-icons/si'
 import { MdSupportAgent } from 'react-icons/md'
 import { SiNodedotjs, SiGit, SiReact } from 'react-icons/si'
 import { FaLinkedin } from "react-icons/fa";
+import { FaTelegram } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { Analytics } from '@vercel/analytics/react';
 
 const NAV_LINKS = [
@@ -363,6 +365,24 @@ function Contact() {
             className="text-ink hover:text-amber transition-colors w-fit"
           >
             <FaLinkedin className="text-2xl" />
+          </a>
+          <a
+            href="https://t.me/azqwxc"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+            className="text-ink hover:text-amber transition-colors w-fit"
+          >
+            <FaTelegram className="text-2xl" />
+          </a>
+          <a
+            href="https://github.com/rukuu-code"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+            className="text-ink hover:text-amber transition-colors w-fit"
+          >
+            <FaGithub className="text-2xl" />
           </a>
           </div>
 
