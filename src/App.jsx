@@ -357,6 +357,7 @@ function Contact() {
             <a href="tel:+639630224096" className="text-ink hover:text-amber transition-colors w-fit">
               +63 963 022 4096
             </a>
+            <div className="flex items-center gap-5 mt-2">
             <a
             href="https://www.linkedin.com/in/cruzjasonn/"
             target="_blank"
@@ -384,6 +385,7 @@ function Contact() {
           >
             <FaGithub className="text-2xl" />
           </a>
+          </div>
           </div>
 
           <p className="mt-10 font-mono text-xs text-muted">English &middot; Filipino</p>
