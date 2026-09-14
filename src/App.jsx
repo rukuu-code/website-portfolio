@@ -360,7 +360,7 @@ function Contact() {
               rel="noreferrer"
               className="text-ink hover:text-amber transition-colors w-fit"
             >
-              linkedin.com/in/cruz-jason-714000434
+              LinkedIn
             </a>
           </div>
 
