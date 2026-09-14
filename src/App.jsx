@@ -4,6 +4,7 @@ import { FaRobot, FaShareNodes } from 'react-icons/fa6'
 import { SiPython, SiDiscord } from 'react-icons/si'
 import { MdSupportAgent } from 'react-icons/md'
 import { SiNodedotjs, SiGit, SiReact } from 'react-icons/si'
+import { FaLinkedin } from "react-icons/fa";
 import { Analytics } from '@vercel/analytics/react';
 
 const NAV_LINKS = [
@@ -355,13 +356,14 @@ function Contact() {
               +63 963 022 4096
             </a>
             <a
-              href="https://www.linkedin.com/in/cruzjasonn/"
-              target="_blank"
-              rel="noreferrer"
-              className="text-ink hover:text-amber transition-colors w-fit"
-            >
-              LinkedIn
-            </a>
+            href="https://www.linkedin.com/in/cruzjasonn/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+            className="text-ink hover:text-amber transition-colors w-fit"
+          >
+            <FaLinkedin className="text-2xl" />
+          </a>
           </div>
 
           <p className="mt-10 font-mono text-xs text-muted">English &middot; Filipino</p>
