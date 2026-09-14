@@ -355,7 +355,7 @@ function Contact() {
               +63 963 022 4096
             </a>
             <a
-              href="https://www.linkedin.com/in/cruz-jason-714000434/"
+              href="https://www.linkedin.com/in/cruzjasonn/"
               target="_blank"
               rel="noreferrer"
               className="text-ink hover:text-amber transition-colors w-fit"
