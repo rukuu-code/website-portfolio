@@ -8,6 +8,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaTelegram } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { Analytics } from '@vercel/analytics/react';
+import Lanyard from './components/Lanyard'
 
 const NAV_LINKS = [
   { href: '#about', label: 'about' },
@@ -18,15 +19,15 @@ const NAV_LINKS = [
 
 const PROJECTS = [
   {
-    name: 'QR Code Generator',
-    path: '~/projects/qr-generator',
+    name: 'Weather App Dashboard',
+    path: '~/projects/weather-app',
     description:
-      'A small utility that turns any link or text into a scannable QR code on the spot — built to speed up a task clients kept asking for by hand.',
-    tags: ['Python', 'Automation'],
+      'A weather dashboard that shows live conditions and a 5-day forecast for any city, with a dark, animated background that actually reacts to the weather — clouds drift, rain falls, snow accumulates, matching what\u2019s really happening outside.',
+    tags: ['React', 'API Integration'],
   },
   {
-    name: 'Discord Bot',
-    path: '~/projects/discord-bot',
+    name: 'Nocta Bot',
+    path: '~/projects/nocta-bot',
     description:
       'A custom bot for managing and moderating Discord communities — handles routine server tasks so admins don\u2019t have to.',
     tags: ['Python', 'Discord'],
@@ -44,6 +45,13 @@ const PROJECTS = [
     description:
       'Hand-built HTML sites and layouts for small clients — clean markup, no bloat, fast to load.',
     tags: ['Web Development', 'HTML'],
+  },
+  {
+    name: 'Google Workspace Management',
+    path: '~/projects/google-workspace-management',
+    description:
+      'Managing Google Workspace (Docs, Sheets, Slides, Drive) to organize files, automate routine tasks, and keep teams working efficiently across shared documents.',
+    tags: ['Workspace Management'],
   },
 ]
 
@@ -110,6 +118,41 @@ function useTypedLine(text, speed = 42, startDelay = 300) {
 function SectionMark({ children }) {
   return (
     <p className="font-mono text-sm text-amber mb-4 select-none">// {children}</p>
+    
+  )
+}
+
+function useInView(options = { threshold: 0.15 }) {
+  const ref = useRef(null)
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setInView(true)
+        observer.unobserve(el)
+      }
+    }, options)
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  return [ref, inView]
+}
+
+function Reveal({ children, className = '' }) {
+  const [ref, inView] = useInView()
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ease-out ${
+        inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      } ${className}`}
+    >
+      {children}
+    </div>
   )
 }
 
@@ -167,40 +210,53 @@ function Hero() {
 
   return (
     <section id="top" className="max-w-5xl mx-auto px-6 md:px-10 pt-16 md:pt-24 pb-20">
-      <div className="max-w-content">
-        <div className="font-mono text-sm text-muted mb-6 leading-relaxed">
-          <p>
-            <span className="text-amber">$</span> whoami
+      <div className="flex flex-col lg:flex-row items-center gap-8">
+        <div className="max-w-content flex-1">
+          <div className="font-mono text-sm text-muted mb-6 leading-relaxed">
+            <p>
+              <span className="text-amber">$</span> whoami
+            </p>
+            <p className="mt-1 text-ink">
+              {output}
+              <span className={done ? 'opacity-0' : 'inline-block w-2 bg-amber ml-0.5 animate-pulse'}>&nbsp;</span>
+            </p>
+          </div>
+
+          <h1 className="font-display font-semibold text-4xl sm:text-5xl md:text-6xl leading-[1.08] text-ink">
+            Jason Cruz
+          </h1>
+
+          <p className="mt-6 text-lg md:text-xl text-muted leading-relaxed max-w-[560px]">
+            I build small tools, automate the boring parts of a workflow, and keep systems
+            running for people who&rsquo;d rather focus on their work than their tech stack.
           </p>
-          <p className="mt-1 text-ink">
-            {output}
-            <span className={done ? 'opacity-0' : 'inline-block w-2 bg-amber ml-0.5 animate-pulse'}>&nbsp;</span>
-          </p>
+
+          <div className="mt-9 flex flex-wrap items-center gap-4">
+            <a
+              href="mailto:cruzjasonn.7@gmail.com"
+              className="font-mono text-sm bg-amber text-bg font-medium rounded px-5 py-3 hover:bg-[#f2b45c] transition-colors"
+            >
+              Email me
+            </a>
+            <a
+              href="#projects"
+              className="font-mono text-sm border border-line text-ink rounded px-5 py-3 hover:border-amber transition-colors"
+            >
+              View projects
+            </a>
+                    </div>
         </div>
 
-        <h1 className="font-display font-semibold text-4xl sm:text-5xl md:text-6xl leading-[1.08] text-ink">
-          Jason Cruz
-        </h1>
-
-        <p className="mt-6 text-lg md:text-xl text-muted leading-relaxed max-w-[560px]">
-          I build small tools, automate the boring parts of a workflow, and keep systems
-          running for people who&rsquo;d rather focus on their work than their tech stack.
-        </p>
-
-        <div className="mt-9 flex flex-wrap items-center gap-4">
-          <a
-            href="mailto:cruzjasonn.7@gmail.com"
-            className="font-mono text-sm bg-amber text-bg font-medium rounded px-5 py-3 hover:bg-[#f2b45c] transition-colors"
-          >
-            Email me
-          </a>
-          <a
-            href="#projects"
-            className="font-mono text-sm border border-line text-ink rounded px-5 py-3 hover:border-amber transition-colors"
-          >
-            View projects
-          </a>
-        </div>
+        <div className="flex-1 w-full h-[700px] border border-line rounded-lg overflow-hidden">
+  <Lanyard
+    position={[0, 0, 25]}
+    gravity={[0, -40, 0]}
+    fov={25}
+    frontImage="/my-photo.jpg"
+    imageFit="cover"
+    lanyardWidth={1.2}
+  />
+</div>
       </div>
     </section>
   )
@@ -209,14 +265,14 @@ function Hero() {
 function About() {
   return (
     <section id="about" className="max-w-5xl mx-auto px-6 md:px-10 py-16 md:py-20 border-t border-line">
-      <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16">
+      <Reveal className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16">
         <div>
           <SectionMark>about</SectionMark>
         </div>
         <div className="max-w-content">
           <p className="text-lg md:text-xl leading-relaxed text-ink/90">
-            I&rsquo;m a tech-savvy, detail-oriented aspiring virtual assistant with hands-on
-            experience across Python, automation, Discord server management, web development,
+            I&rsquo;m a tech-savvy, detail-oriented virtual assistant with hands-on
+            experience across python, automation, discord server management, web development,
             social media management, and general technical support.
           </p>
           <p className="mt-5 text-base md:text-lg leading-relaxed text-muted">
@@ -227,16 +283,18 @@ function About() {
           </p>
 
           <div className="mt-10 pt-8 border-t border-line">
-            <p className="font-mono text-xs text-muted mb-2">education</p>
+            <p className="font-mono text-xs text-muted mb-2">Education</p>
             <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-              <p className="text-ink font-medium">
-                BSIT, University of the Cordilleras
-              </p>
-              <p className="font-mono text-sm text-muted">2026 &ndash; 2028, Undergraduate</p>
+            <p className="text-ink font-medium">
+                University of the Cordilleras
+            </p>
+            </div>
+            <p className="text-muted font-medium mt-3">
+              Bachelor of Science in Information Technology
+            </p>
             </div>
           </div>
-        </div>
-      </div>
+        </Reveal>
     </section>
   )
 }
@@ -244,7 +302,7 @@ function About() {
 function Projects() {
   return (
     <section id="projects" className="max-w-5xl mx-auto px-6 md:px-10 py-16 md:py-20 border-t border-line">
-      <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16">
+      <Reveal className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16">
         <div>
           <SectionMark>projects</SectionMark>
         </div>
@@ -274,7 +332,7 @@ function Projects() {
             </div>
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }
@@ -282,7 +340,7 @@ function Projects() {
 function Skills() {
   return (
     <section id="skills" className="max-w-5xl mx-auto px-6 md:px-10 py-16 md:py-20 border-t border-line">
-      <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16">
+      <Reveal className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16">
         <div>
           <SectionMark>skills</SectionMark>
         </div>
@@ -310,7 +368,7 @@ function Skills() {
             ))}
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }
@@ -318,7 +376,7 @@ function Skills() {
 function Strengths() {
   return (
     <section className="max-w-5xl mx-auto px-6 md:px-10 py-16 md:py-20 border-t border-line">
-      <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16">
+       <Reveal className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16">
         <div>
           <SectionMark>strengths</SectionMark>
         </div>
@@ -330,7 +388,7 @@ function Strengths() {
             </p>
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }
@@ -338,7 +396,7 @@ function Strengths() {
 function Contact() {
   return (
     <section id="contact" className="max-w-5xl mx-auto px-6 md:px-10 py-16 md:py-24 border-t border-line">
-      <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16">
+      <Reveal className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16">
         <div>
           <SectionMark>contact</SectionMark>
         </div>
@@ -371,7 +429,7 @@ function Contact() {
             href="https://t.me/azqwxc"
             target="_blank"
             rel="noreferrer"
-            aria-label="LinkedIn"
+            aria-label="Telegram"
             className="text-ink hover:text-amber transition-colors w-fit"
           >
             <FaTelegram className="text-2xl" />
@@ -380,7 +438,7 @@ function Contact() {
             href="https://github.com/rukuu-code"
             target="_blank"
             rel="noreferrer"
-            aria-label="LinkedIn"
+            aria-label="GitHub"
             className="text-ink hover:text-amber transition-colors w-fit"
           >
             <FaGithub className="text-2xl" />
@@ -390,7 +448,7 @@ function Contact() {
 
           <p className="mt-10 font-mono text-xs text-muted">English &middot; Filipino</p>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }
