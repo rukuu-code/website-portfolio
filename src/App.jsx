@@ -249,9 +249,9 @@ function Hero() {
 
         <div className="flex-1 w-full h-[700px] border border-line rounded-lg overflow-hidden">
   <Lanyard
-    position={[0, 0, 25]}
+    position={[0, 0, 20]}
     gravity={[0, -40, 0]}
-    fov={25}
+    fov={20}
     frontImage="/my-photo.jpg"
     imageFit="cover"
     lanyardWidth={1.2}
